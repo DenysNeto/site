@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="main.css" ></link>
+        <link rel="stylesheet" href="main_preview.css" ></link>
     <title>Document</title>
 </head>
 <body style="overflow-y: hidden; overflow-x :  hidden; background-color: #FAFBFD;">
@@ -12,7 +12,7 @@
     
 
 
-    <header id="demo-header"> <div class="left"> <a href="index.html"> <h1><span>Back</span></h1> </a>
+    <header id="demo-header"> <div class="left">  <h1 id="back"><span>Back</span></h1> 
         <ul class="selector">
             <li class="active" id="pc" data-width="auto" data-height="auto">Desktop</li>
             <li id="tablet" data-width="1040" data-height="668">Tablet</li>
@@ -50,11 +50,20 @@
         let iframe = document.getElementById("your_site");
         let frameWrapper =  document.getElementById("frame-wrapper");
         let path  = window.location.search.split("=")[1];
+        let backBtn  = document.getElementById("back");
         iframe.src = "/" + path + "/index.html" //        /massively/index.html
         iframe.style.width = "100vw"
         iframe.style.height = "100vh"
         iframe.style.overflowX = "hidden"
         iframe.style.overflowY = "hidden"
+
+
+
+
+        backBtn.addEventListener("click" ,  ()=>{
+            window.location = "/"
+
+        })
 
 
  
@@ -69,8 +78,8 @@
             if(event.target.id == "pc")
             {
                 iframe.style.width =  "100vw";
+                
                 iframe.style.height = "100vh";
-
                 frameWrapper.style.width = "100vw"
                 frameWrapper.style.height = "100vh"
             }
@@ -78,17 +87,19 @@
                 let width  = ev.target.getAttribute("data-width")
                 let height  = ev.target.getAttribute("data-height");
                 iframe.style.width =  width + "px";
+
                 iframe.style.height = height + "px";
                 frameWrapper.style.width = +width+100 + "px";
-                frameWrapper.style.height = +height+100 + "px"
+                if(window.screen.height > 1000 )
+                {
+                    frameWrapper.style.height = +height+100 + "px"
+                }
+                
             }
         })
 
 
-              let btn =  document.getElementById("test_smt");
-       btn.addEventListener("click" ,  (ev)=>{
-iframe.src = "stellar/index.html"
-       }) 
+
 
     </script>
     
